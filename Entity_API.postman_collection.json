@@ -1,0 +1,566 @@
+{
+	"info": {
+		"_postman_id": "881552ec-df24-49e2-936a-5179097c4de2",
+		"name": "Entity API Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "Base Queries",
+					"item": [
+						{
+							"name": "Get Subject Base",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects(5)",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects(5)"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get by Property",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects(2)/FirstName",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects(2)"
+									],
+									"path": [
+										"FirstName"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET metadata",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/$metadata",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/$metadata"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OData Query Parameters",
+					"item": [
+						{
+							"name": "Filter",
+							"item": [
+								{
+									"name": "Get filter eq PK",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id eq 4",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Id eq 4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter le PK",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id le 4",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Id le 4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter ge PK",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id ge 2",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Id ge 2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter gt PK",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id gt 4",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Id gt 4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter lt PK",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id lt 4",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Id lt 4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter eq Strings",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=LastName eq 'Mustermann'",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "LastName eq 'Mustermann'"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter and",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=LastName eq 'Mustermann' and FirstName eq 'Peter'",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "LastName eq 'Mustermann' and FirstName eq 'Peter'"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get filter or",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=LastName eq 'Brunner' or LastName eq 'Mustermann'",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "LastName eq 'Brunner' or LastName eq 'Mustermann'"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET filter Enum WIP",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Type eq ch.abacus.adre.SubjectType'Organisation'",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$filter",
+													"value": "Type eq ch.abacus.adre.SubjectType'Organisation'"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Select",
+							"item": [
+								{
+									"name": "Get select",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$select=LastName",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$select",
+													"value": "LastName"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get select multiple",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$select=LastName,Birthday",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$select",
+													"value": "LastName,Birthday"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Format",
+							"item": [
+								{
+									"name": "Get format json",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$format=json",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$format",
+													"value": "json"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get format xml",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$format=xml",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$format",
+													"value": "xml"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get format atom",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$format=atom",
+											"host": [
+												"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+											],
+											"query": [
+												{
+													"key": "$format",
+													"value": "atom"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get orderby desc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$orderby=Id desc",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+									],
+									"query": [
+										{
+											"key": "$orderby",
+											"value": "Id desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get orderby asc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$orderby=Id asc",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+									],
+									"query": [
+										{
+											"key": "$orderby",
+											"value": "Id asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Complex Queries",
+					"item": [
+						{
+							"name": "GET filter select orderby",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id gt 4&$select=LastName,Supplement,Birthday&$orderby=Id desc",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+									],
+									"query": [
+										{
+											"key": "$filter",
+											"value": "Id gt 4"
+										},
+										{
+											"key": "$select",
+											"value": "LastName,Supplement,Birthday"
+										},
+										{
+											"key": "$orderby",
+											"value": "Id desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET filter or select orderby",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects?$filter=Id gt 4 or LastName eq 'Mustermann'&$select=LastName,EnteredBy,Birthday",
+									"host": [
+										"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/Subjects"
+									],
+									"query": [
+										{
+											"key": "$filter",
+											"value": "Id gt 4 or LastName eq 'Mustermann'"
+										},
+										{
+											"key": "$select",
+											"value": "LastName,EnteredBy,Birthday"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Base Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/",
+					"host": [
+						"HTTP://{{BASE_URL}}/api/entity/v1/mandants/300/"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "{{CLIENT_SECRET}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{CLIENT_ID}}",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://{{BASE_URL}}/oauth/oauth2/v1/token",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Test Env Token",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "CLIENT_SECRET",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "CLIENT_ID",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
