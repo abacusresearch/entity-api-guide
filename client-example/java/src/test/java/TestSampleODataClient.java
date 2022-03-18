@@ -169,56 +169,6 @@ public class TestSampleODataClient {
         print(String.valueOf(res.getHeader("Accept-Encoding")));
     }
 
-    /*
-    @Test
-    void testReadSubjectsWithKeyAndExpand() {
-        Edm edm = client.readEdm(SERVICE_URL);
-        print("\n----- Read Entity with $expand  ------------------------------");
-        entry = readEntityWithKeyExpand(edm, SERVICE_URL, "Addresses", 4, "Activities");
-        print("Single Entry with expanded Activities relation:\n" + prettyPrint(entry.getProperties(), 0));
-    }
-
-
-        @Test
-       void testCUDSubjects() {
-        // skip everything as odata4 sample/server only supporting retrieval
-       print("\n----- Create Entry ------------------------------");
-        ClientEntity ce = client.loadEntity("myaddress.json");
-        entry = client.createEntity(edm, SERVICE_URL, "Addresses", ce);
-       print("Created Entry successfully: " + prettyPrint(entry.getProperties(), 0));
-        long insertedKey = entry.getProperty("AddressNumber").getPrimitiveValue().toCastValue(Long.class);
-
-       print("\n----- Update Entry ------------------------------");
-        ce = client.loadEntity("myaddress2.json");
-        int sc = client.updateEntity(edm, SERVICE_URL, "Addresses", insertedKey, ce);
-       print("Updated successfully: " + sc);
-        entry = client.readEntityWithKey(edm, SERVICE_URL, "Addresses", insertedKey);
-       print("Updated Entry successfully: " + prettyPrint(entry.getProperties(), 0));
-
-       print("\n----- Delete Entry ------------------------------");
-        sc = client.deleteEntity(SERVICE_URL, "Addresses", insertedKey);
-       print("Deletion of Entry was successfully: " + sc);
-
-        try {
-           print("\n----- Verify Delete Entry ------------------------------");
-            client.readEntityWithKey(edm, SERVICE_URL, "Addresses", 123);
-        } catch (Exception e) {
-           print(e.getMessage());
-        }
-    }
-
-        @Test
-        void testUpdateBinary() throws Exception {
-            Future<ODataMediaEntityUpdateResponse<ClientEntity>> future = client.updateEntityMedia(SERVICE_URL, "Addresses", 105, getClass().getResourceAsStream("large.mp4"));
-            while(!future.isDone()) {
-                System.out.println("Calculating...");
-                Thread.sleep(1000);
-            }
-
-            System.out.println(future.get().getStatusCode());
-        }
-    */
-
     //region Print Helpers
     private static String getDescription(Edm edm, EdmAnnotatable entityType) {
         final var descriptionFQN = new FullQualifiedName("Org.OData.Core.V1.Description");
