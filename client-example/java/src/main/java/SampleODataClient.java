@@ -9,7 +9,6 @@ import org.apache.olingo.client.api.domain.ClientEntity;
 import org.apache.olingo.client.api.domain.ClientEntitySet;
 import org.apache.olingo.client.api.domain.ClientEntitySetIterator;
 import org.apache.olingo.client.api.edm.xml.Reference;
-import org.apache.olingo.client.api.edm.xml.XMLMetadata;
 import org.apache.olingo.commons.api.edm.Edm;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
@@ -156,11 +155,4 @@ public class SampleODataClient {
 
     return response.getBody();
   }
-
-  public ODataRetrieveResponse<XMLMetadata> getMetadataResponse(String serviceUrl) {
-    final var requestFactory = client.getRetrieveRequestFactory();
-    final ODataRetrieveRequest<XMLMetadata> xmlMetadataRequest = requestFactory.getXMLMetadataRequest(serviceUrl);
-    return xmlMetadataRequest.execute();
-  }
-
 }

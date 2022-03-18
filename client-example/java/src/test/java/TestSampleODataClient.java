@@ -162,13 +162,6 @@ public class TestSampleODataClient {
         }
     }
 
-    @Test
-    void testGzipCompression() {
-        print("\n----- Read batch with keys ------------------------------");
-        var res = client.getMetadataResponse(SERVICE_URL);
-        print(String.valueOf(res.getHeader("Accept-Encoding")));
-    }
-
     //region Print Helpers
     private static String getDescription(Edm edm, EdmAnnotatable entityType) {
         final var descriptionFQN = new FullQualifiedName("Org.OData.Core.V1.Description");
