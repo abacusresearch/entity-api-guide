@@ -38,11 +38,6 @@
             <artifactId>httpasyncclient</artifactId>
             <version>4.1.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.scribejava</groupId>
-            <artifactId>scribejava-httpclient-apache</artifactId>
-            <version>8.3.1</version>
-        </dependency>
     </dependencies>
 
     <properties>

@@ -12,9 +12,7 @@ public class AuthServiceTokenCache {
     private static final ZoneOffset zoneOffset = ZoneOffset.UTC;
 
     public AuthServiceTokenCache(OAuth2AccessToken token) {
-        this.token = token.getAccessToken();
-        this.isExp = false;
-        this.expiresAt = LocalDateTime.now().toEpochSecond(zoneOffset) + token.getExpiresIn();
+        setToken(token);
     }
 
     public String getToken() {
