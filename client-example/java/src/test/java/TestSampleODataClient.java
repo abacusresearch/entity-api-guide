@@ -56,11 +56,9 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjects() {
-        Edm edm = client.readEdm(SERVICE_URL);
-
        print("\n----- Read Entities ------------------------------");
         ClientEntitySetIterator<ClientEntitySet, ClientEntity> iterator =
-                client.readEntities(edm, SERVICE_URL, "Subjects");
+                client.readEntities(SERVICE_URL, "Subjects");
 
         while (iterator.hasNext()) {
             ClientEntity ce = iterator.next();
@@ -70,12 +68,9 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjectsWithSelect() {
-        Edm edm = client.readEdm(SERVICE_URL);
-
         ClientEntitySetIterator<ClientEntitySet, ClientEntity> iterator;
         print("\n----- Read Entry with $select ------------------------------");
         iterator = client.readEntitiesWithSelect(
-                edm,
                 SERVICE_URL,
                 "Subjects",
                 "FirstName",
@@ -89,12 +84,9 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjectsWithOrderBy() {
-        Edm edm = client.readEdm(SERVICE_URL);
-
         ClientEntitySetIterator<ClientEntitySet, ClientEntity> iterator;
         print("\n----- Read Entry with $orderby ------------------------------");
         iterator = client.readEntitiesWithOrderBy(
-                edm,
                 SERVICE_URL,
                 "Subjects",
                 "Id desc"
@@ -107,12 +99,9 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjectsWithFormat() {
-        Edm edm = client.readEdm(SERVICE_URL);
-
         ClientEntitySetIterator<ClientEntitySet, ClientEntity> iterator;
         print("\n----- Read Entry with $format ------------------------------");
         iterator = client.readEntitiesWithFormat(
-                edm,
                 SERVICE_URL,
                 "Subjects",
                 "xml"
@@ -125,14 +114,11 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjectsWithFilter() {
-        Edm edm = client.readEdm(SERVICE_URL);
-
        print("\n----- Read Entities with $filter  ------------------------------");
         ClientEntitySetIterator<ClientEntitySet, ClientEntity> iterator = client.readEntitiesWithFilter(
-                edm,
                 SERVICE_URL,
                 "Subjects",
-                "LastName eq 'Schwarz'"
+                "Id eq 2"
         );
         while (iterator.hasNext()) {
             ClientEntity ce = iterator.next();
@@ -142,9 +128,8 @@ public class TestSampleODataClient {
 
     @Test
     void testReadSubjectsWithKey() {
-        Edm edm = client.readEdm(SERVICE_URL);
        print("\n----- Read Entry with key segment -----------------------");
-        ClientEntity entry = client.readEntityWithKey(edm, SERVICE_URL, "Subjects", 1);
+        ClientEntity entry = client.readEntityWithKey(SERVICE_URL, "Subjects", 1);
        print("Single Entry:\n" + prettyPrint(entry.getProperties(), 0));
     }
 
@@ -160,6 +145,18 @@ public class TestSampleODataClient {
                 print("Single Entry:\n" + prettyPrint(res.getBody().getProperties(), 0));
             }
         }
+    }
+
+    @Test
+    void testReadSubjectsWithKeyAndExpand() {
+        print("\n----- Read Entity with $expand  ------------------------------");
+        var entry = client.readEntityWithKeyExpand(
+                SERVICE_URL,
+                "Activities",
+                UUID.fromString("dc021300-947f-e301-0204-e03720524153"),
+                "Address"
+        );
+        print("Single Activities Entry with expanded Addresses relation:\n" + prettyPrint(entry.getProperties(), 0));
     }
 
     //region Print Helpers
@@ -234,9 +231,7 @@ public class TestSampleODataClient {
     }
 
     private static void intend(StringBuilder builder, int intendLevel) {
-        for (int i = 0; i < intendLevel; i++) {
-            builder.append("  ");
-        }
+        builder.append("  ".repeat(Math.max(0, intendLevel)));
     }
     //endregion
 }

@@ -29,7 +29,7 @@ public class AuthService {
                 .apiSecret(CLIENT_SECRET)
                 .build(AbacusApi.instance());
         this.cache = new AuthServiceTokenCache(
-                service.getAccessTokenClientCredentialsGrant().getAccessToken()
+                service.getAccessTokenClientCredentialsGrant()
         );
     }
 
@@ -44,7 +44,7 @@ public class AuthService {
 
     private void checkTokenExpired() throws IOException, ExecutionException, InterruptedException {
         if (cache.isExp()) {
-            cache.setToken(service.getAccessTokenClientCredentialsGrant().getAccessToken());
+            cache.setToken(service.getAccessTokenClientCredentialsGrant());
         }
     }
 

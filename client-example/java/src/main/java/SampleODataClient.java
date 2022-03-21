@@ -72,37 +72,37 @@ public class SampleODataClient {
    * - Request Headers
    */
 
-  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntities(Edm edm, String serviceUri,
+  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntities(String serviceUri,
                                                                              String entitySetName) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).build();
-    return readEntities(edm, absoluteUri);
+    return readEntities(absoluteUri);
   }
 
-  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithFilter(Edm edm, String serviceUri,
+  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithFilter(String serviceUri,
                                                                                        String entitySetName, String filterName) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).filter(filterName).build();
-    return readEntities(edm, absoluteUri);
+    return readEntities(absoluteUri);
   }
 
-  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithSelect(Edm edm, String serviceUri,
+  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithSelect(String serviceUri,
                                                                                        String entitySetName, String... selectionNames) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).select(selectionNames).build();
-    return readEntities(edm, absoluteUri);
+    return readEntities(absoluteUri);
   }
 
-  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithOrderBy(Edm edm, String serviceUri,
-                                                                                       String entitySetName, String orderByName) {
+  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithOrderBy(String serviceUri,
+                                                                                        String entitySetName, String orderByName) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).orderBy(orderByName).build();
-    return readEntities(edm, absoluteUri);
+    return readEntities(absoluteUri);
   }
 
-  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithFormat(Edm edm, String serviceUri,
-                                                                                        String entitySetName, String formatName) {
+  public ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntitiesWithFormat(String serviceUri,
+                                                                                       String entitySetName, String formatName) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).format(formatName).build();
-    return readEntities(edm, absoluteUri);
+    return readEntities(absoluteUri);
   }
 
-  private ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntities(Edm edm, URI absoluteUri) {
+  private ClientEntitySetIterator<ClientEntitySet, ClientEntity> readEntities(URI absoluteUri) {
     System.out.println("URI = " + absoluteUri);
     ODataEntitySetIteratorRequest<ClientEntitySet, ClientEntity> request =
             client.getRetrieveRequestFactory().getEntitySetIteratorRequest(absoluteUri);
@@ -112,20 +112,20 @@ public class SampleODataClient {
     return response.getBody();
   }
 
-  public ClientEntity readEntityWithKey(Edm edm, String serviceUri, String entitySetName, Object keyValue) {
+  public ClientEntity readEntityWithKey(String serviceUri, String entitySetName, Object keyValue) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName)
             .appendKeySegment(keyValue).build();
-    return readEntity(edm, absoluteUri);
+    return readEntity(absoluteUri);
   }
 
-  public ClientEntity readEntityWithKeyExpand(Edm edm, String serviceUri, String entitySetName, Object keyValue,
+  public ClientEntity readEntityWithKeyExpand(String serviceUri, String entitySetName, Object keyValue,
                                               String expandRelationName) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName).appendKeySegment(keyValue)
             .expand(expandRelationName).build();
-    return readEntity(edm, absoluteUri);
+    return readEntity(absoluteUri);
   }
 
-  private ClientEntity readEntity(Edm edm, URI absoluteUri) {
+  private ClientEntity readEntity(URI absoluteUri) {
     ODataEntityRequest<ClientEntity> request = client.getRetrieveRequestFactory().getEntityRequest(absoluteUri);
     request.setAccept("application/json;odata.metadata=full");
     ODataRetrieveResponse<ClientEntity> response = request.execute();
