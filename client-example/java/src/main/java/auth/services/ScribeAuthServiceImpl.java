@@ -1,9 +1,13 @@
-package auth;
+package auth.services;
 
+import auth.EmptySystemPropertyException;
+import auth.IAuthService;
+import auth.OAuthToken;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import io.netty.util.internal.StringUtil;
+import org.apache.olingo.client.api.http.HttpClientException;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -11,26 +15,24 @@ import java.util.concurrent.ExecutionException;
 /**
  * Requires setting CLIENT_ID and CLIENT_SECRET as Environment Variables to access the VM
  * For valid Client Credentials please contact Abacus Research AG
+ *
+ * This implementation uses the Scribe OAuth Library
  */
 
-public class AuthService {
-    private static final String AUTH_ENDPOINT = "https://entity-api1-1.demo.abacus.ch/oauth/oauth2/v1/token";
+public class ScribeAuthServiceImpl implements IAuthService {
+    private static final String AUTH_ENDPOINT = "/oauth/oauth2/v1/token";
 
     private static final String CLIENT_ID = System.getProperty("CLIENT_ID");
     private static final String CLIENT_SECRET = System.getProperty("CLIENT_SECRET");
 
     private final OAuth20Service service;
-    private final AuthServiceTokenCache cache;
 
 
-    public AuthService() throws EmptySystemPropertyException, IOException, ExecutionException, InterruptedException {
+    public ScribeAuthServiceImpl(String baseUrl) throws EmptySystemPropertyException {
         checkSystemPropertiesSet();
         this.service = new ServiceBuilder(CLIENT_ID)
                 .apiSecret(CLIENT_SECRET)
-                .build(AbacusApi.instance());
-        this.cache = new AuthServiceTokenCache(
-                service.getAccessTokenClientCredentialsGrant()
-        );
+                .build(AbacusApi.instance(baseUrl));
     }
 
     private void checkSystemPropertiesSet() throws EmptySystemPropertyException {
@@ -42,23 +44,27 @@ public class AuthService {
         }
     }
 
-    private void checkTokenExpired() throws IOException, ExecutionException, InterruptedException {
-        if (cache.isExp()) {
-            cache.setToken(service.getAccessTokenClientCredentialsGrant());
+    @Override
+    public OAuthToken getToken() {
+        try {
+            final var token = service.getAccessTokenClientCredentialsGrant();
+            return new OAuthToken(token.getAccessToken(), token.getExpiresIn(), false);
+        } catch (IOException | InterruptedException | ExecutionException e) {
+            throw new HttpClientException("Failed to fetch Token with scribejava");
         }
     }
 
-    public String getClientCredentialsToken() throws IOException, ExecutionException, InterruptedException {
-        checkTokenExpired();
-        return cache.getToken();
-    }
+    private static class AbacusApi extends DefaultApi20 {
 
-    static class AbacusApi extends DefaultApi20 {
-        private AbacusApi() {}
+        private final String baseURL;
+
+        private AbacusApi(final String baseURL) {
+            this.baseURL = baseURL;
+        }
 
         @Override
         public String getAccessTokenEndpoint() {
-            return AUTH_ENDPOINT;
+            return baseURL + AUTH_ENDPOINT;
         }
 
         @Override
@@ -66,8 +72,8 @@ public class AuthService {
             throw new UnsupportedOperationException();
         }
 
-        public static AbacusApi instance() {
-            return new AbacusApi();
+        public static AbacusApi instance(final String baseUrl) {
+            return new AbacusApi(baseUrl);
         }
     }
 

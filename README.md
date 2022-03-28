@@ -2,11 +2,13 @@
 
 - [entity-api-guide](#entity-api-guide)
   - [Intro](#intro)
+  - [Roadmap](#roadmap)
   - [OData Specification](#odata-specification)
     - [Supported Access Schemas](#supported-access-schemas)
     - [Supported Queryparameters](#supported-queryparameters)
   - [Authentication](#authentication)
-    - [Application Flow](#application-flow)
+    - [Auth Endpoint Configuration URL](#auth-endpoint-configuration-url)
+    - [Client Credential Grant](#client-credential-grant)
     - [Authorization Flow](#authorization-flow)
     - [Authorization Scope](#authorization-scope)
   - [Pagination](#pagination)
@@ -26,6 +28,19 @@ It is intended to be the new way to communicate with the Abacus Buisness Softwar
 Essentially this quickstart provides the reader with information about how to wrap his webrequests to communicate with the API as intended.
 
 **For this quick start guide we will be using the Subjects Entity defined for the CRM subsystem of the Abacus application.**
+
+Also we have attached the roadmap of Buisness Units which are planed to be translated into entities until the official release of the Entity API in Feb. 23'.
+
+## Roadmap
+
+Abacus supports a wide array of systems. If for Customer Relationship Management, book keeping or project management we offer solutions. Because of this we need to support varying entities according to their respective buisness objects.
+
+At this point we wish to show a roadmap of the planned entities until release.
+
+![Entity API Roadmap](./resources/EntityApiPlan.PNG "Entity API Roadmap")
+
+**If you have questions or inputs to this roadmap we will of course respect our customers wishes! Feel free to contact us if you would like us to implement the entity for your use case earlier.**
+
 
 ## OData Specification
 
@@ -59,13 +74,16 @@ Further there are system operations defined for certain queryparameters if suppl
 
 To access the Entity API and thus the data stored inside the Abacus installation an authentication method is required.
 
-At the moment the authentication is done through the **/oauth/oauth2/v1/token endpoint**.
-
 Authentication is done via [OAuth 2.0](https://oauth.net/2/).
 
 The client receives a bearer token through the authentication endpoint by use of an OAuth Flow. This token is then set in the authorization header of the webrequest.
 
-### Application Flow
+### Auth Endpoint Configuration URL
+
+At the moment the authentication is done through the **/oauth/oauth2/v1/token endpoint**.
+Clients can request the URL of the token issueing endpoint via OpenID Connect via the /.well-known/openid-configuration endpoint of the responsible domain
+
+### Client Credential Grant
 
 To use this OAuth Flow an Abacus Service User is required. This service users has a clientID and client_secret which need to be supplied.
 
@@ -80,6 +98,9 @@ client_secret: "<client_secret>"
 ```
 
 If the client credentials are valid an access_token is received.
+
+![Client Credentials Sequenzdiagram](./resources/auth-sequence-client-credentials.png "Client Credentials Sequenzdiagram")
+[Source: auth0.com](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
 
 ### Authorization Flow
 

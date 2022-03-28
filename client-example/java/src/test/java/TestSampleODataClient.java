@@ -1,4 +1,3 @@
-import auth.EmptySystemPropertyException;
 import org.apache.olingo.client.api.communication.request.batch.ODataBatchResponseItem;
 import org.apache.olingo.client.api.communication.response.ODataResponse;
 import org.apache.olingo.client.api.communication.response.ODataRetrieveResponse;
@@ -7,10 +6,8 @@ import org.apache.olingo.commons.api.edm.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 
 public class TestSampleODataClient {
@@ -19,8 +16,8 @@ public class TestSampleODataClient {
     private static SampleODataClient client;
 
     @BeforeAll
-    static void init() throws IOException, ExecutionException, InterruptedException, EmptySystemPropertyException {
-        client =  new SampleODataClient();
+    static void init() {
+        client =  new SampleODataClient(AuthClientType.SCRIBE);
     }
 
     @Test

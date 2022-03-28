@@ -1,4 +1,3 @@
-import auth.EmptySystemPropertyException;
 import org.apache.olingo.client.api.ODataClient;
 import org.apache.olingo.client.api.communication.request.batch.BatchManager;
 import org.apache.olingo.client.api.communication.request.batch.ODataBatchRequest;
@@ -13,10 +12,8 @@ import org.apache.olingo.commons.api.edm.Edm;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static org.apache.olingo.client.core.ODataClientFactory.getClient;
@@ -35,9 +32,9 @@ public class SampleODataClient {
    * Configuration of Apache Olingo OData Client with self implemented Olingo HttpClientFactory Interface
    * using request interceptors for OAuth 2.0 Application Credential Flow.
    */
-  public SampleODataClient() throws EmptySystemPropertyException, IOException, ExecutionException, InterruptedException {
+  public SampleODataClient(AuthClientType type) {
     client = getClient();
-    client.getConfiguration().setHttpClientFactory(new SampleHttpClientFactory());
+    client.getConfiguration().setHttpClientFactory(new SampleHttpClientFactory(type));
     client.getConfiguration().setGzipCompression(true);
     client.getConfiguration().setDefaultBatchAcceptFormat(ContentType.APPLICATION_OCTET_STREAM);
   }
@@ -111,6 +108,8 @@ public class SampleODataClient {
 
     return response.getBody();
   }
+
+
 
   public ClientEntity readEntityWithKey(String serviceUri, String entitySetName, Object keyValue) {
     URI absoluteUri = client.newURIBuilder(serviceUri).appendEntitySetSegment(entitySetName)
