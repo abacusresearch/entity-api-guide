@@ -148,7 +148,7 @@ public class TestSampleODataClient {
     void testReadSubjectsWithKeyAndExpand() {
         print("\n----- Read Entity with $expand  ------------------------------");
         var entry = client.readEntityWithKeyExpand(
-                SERVICE_URL,
+                "http://localhost:8081/api/entity/v1/mandants/7777/",
                 "Activities",
                 UUID.fromString("dc021300-947f-e301-0204-e03720524153"),
                 "Address"

@@ -3,6 +3,7 @@
 - [entity-api-guide](#entity-api-guide)
   - [Intro](#intro)
   - [Roadmap](#roadmap)
+    - [Buisness Objects](#buisness-objects)
   - [OData Specification](#odata-specification)
     - [Supported Access Schemas](#supported-access-schemas)
     - [Supported Queryparameters](#supported-queryparameters)
@@ -38,6 +39,27 @@ Abacus supports a wide array of systems. If for Customer Relationship Management
 At this point we wish to show a roadmap of the planned entities until release.
 
 ![Entity API Roadmap](./resources/EntityApiPlan.PNG "Entity API Roadmap")
+
+### Buisness Objects
+
+It is not planned to fully implement all Buisness Objects in defined by the Buisness Units in the roadmap to release 23'.
+
+Here is a table which shows which entities will be implemented for the Buisness Unit.
+
+| Buisness Unit |Buisness Objects |
+|---------------|-----------------|
+|Allgemein | Kostenstelle, Mwst-Code, GB/Division, Enterprise, Dossier, Währung, Wechselkurs |
+|CRM| Adressen, Aktivitäten|
+|Finanzbuchhaltung| Buchungen, Journal, Accounts, Klassierungen (Konto & Kostenstelle)|
+| Kreditorenbuchhaltung | Beleg, Classification, Supplier|
+| Debitorenbuchhaltung | Beleg, Klassifikation, Kunden, Zahlung, Innosolv |
+|Servicemanagement|Serviceaufträge, Buchungen, In&Out|
+| Bau |LV Übernahme|
+|Auftragsbearbeitung|Produktstamm, Preisfindung, Verkauf, Einkauf|
+|Immobilienverwaltung|Mieter, Immobilienbaum, Objektverträge, Eigentümer|
+|Lohnbuchhaltung|Personalstamm, Vorerfassung, Lohnabrechnung|
+|HR|Bewerberstamm|
+
 
 **If you have questions or inputs to this roadmap we will of course respect our customers wishes! Feel free to contact us if you would like us to implement the entity for your use case earlier.**
 
