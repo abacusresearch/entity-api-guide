@@ -1,0 +1,49 @@
+﻿{
+  "ProviderId": "Microsoft.OData.ConnectedService",
+  "Version": "0.13.0.0",
+  "GettingStartedDocument": {
+    "Uri": "http://odata.github.io/odata.net/"
+  },
+  "ExtendedData": {
+    "EnableNamingAlias": true,
+    "IgnoreUnexpectedElementsAndAttributes": true,
+    "IncludeT4File": false,
+    "ExcludedOperationImports": [],
+    "ExcludedBoundOperations": [],
+    "ServiceName": "OData Service",
+    "Endpoint": "https://entity-api1-1.demo.abacus.ch/api/entity/v1/mandants/7777/$metadata",
+    "EdmxVersion": {
+      "Major": 4,
+      "Minor": 0,
+      "Build": 0,
+      "Revision": 0,
+      "MajorRevision": 0,
+      "MinorRevision": 0
+    },
+    "GeneratedFileNamePrefix": "Reference",
+    "UseNamespacePrefix": false,
+    "NamespacePrefix": null,
+    "UseDataServiceCollection": true,
+    "MakeTypesInternal": false,
+    "OpenGeneratedFilesInIDE": false,
+    "GenerateMultipleFiles": false,
+    "CustomHttpHeaders": "Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJSZXN0RW50aXR5QXBpX09EYXRhIiwiaXNzIjoiaHR0cHM6Ly9lbnRpdHktYXBpMS0xLmRlbW8uYWJhY3VzLmNoIiwianRpIjoiWTNOVk1PWFdFSExaQ1UyU1JBMFVOMElWMkciLCJzdWIiOiIyMDA4MGI0OS02M2E0LWVjMDEtNjI1OS1mYTE2M2VhZmIxZTkiLCJleHAiOjE2NTExNjAyMjcsImlhdCI6MTY1MTE1OTYyNywic2NwIjpbXSwiYXpwIjoiMjAwODBiNDktNjNhNC1lYzAxLTYyNTktZmExNjNlYWZiMWU5IiwiYXV0aF90aW1lIjoxNjUxMTU5NjI3fQ.RUxoke1kDNIV_Mu8hSHJIZ5Dt-i6QkdEXlsIgzV8kTV6GeKZUvcEcU5VWp1lLLHFlhEWpwVb2trM9nstXxlhavqcICxhE5YDvQjQu2NW08-4LA0IYEkNIdkgP9pSzg7DgBtCCl2fOmgWUwM7ljWjct1F6Y2mfM8fIz71OS6HU7qKb541naWCV2psvoGbcTCH-9t8zj5ISnRSlKM8min4EUm2BgeUN7aL4fV-CUJgLgDCAkVuUrpw5AjX2F32OrTznEJmvPx_y28Niv9nBqrzBOpfoGM7BvzgfFJTIdV0o48oF-dUjXkX6aDkuSpWPatviLVNYuDauSyoLFnLlhV7bQ",
+    "IncludeWebProxy": false,
+    "WebProxyHost": null,
+    "IncludeWebProxyNetworkCredentials": false,
+    "StoreWebProxyNetworkCredentials": false,
+    "WebProxyNetworkCredentialsUsername": null,
+    "WebProxyNetworkCredentialsPassword": null,
+    "WebProxyNetworkCredentialsDomain": null,
+    "IncludeCustomHeaders": true,
+    "StoreCustomHttpHeaders": true,
+    "ExcludedSchemaTypes": [
+      "ch.abacus.adre.Address",
+      "ch.abacus.adre.Communication",
+      "ch.abacus.adre.CommunicationCategory",
+      "ch.abacus.adre.CommunicationType",
+      "ch.abacus.adre.Subject",
+      "ch.abacus.adre.SubjectType"
+    ]
+  }
+}

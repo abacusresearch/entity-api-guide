@@ -1,0 +1,65 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:IncludeAnnotations TermNamespace="Org.OData.Core.V1.Description" />
+    <edmx:IncludeAnnotations TermNamespace="Org.OData.Core.V1.IsLanguageDependent" />
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ch.abacus.worx">
+      <EnumType Name="SubjectType" IsFlags="false" UnderlyingType="Edm.Int32">
+        <Member Name="Person" Value="1" />
+        <Member Name="Organisation" Value="2" />
+      </EnumType>
+      <EntityType Name="Activity">
+        <Key>
+          <PropertyRef Name="ActivityKey" />
+        </Key>
+        <Property Name="ActivityKey" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="255" />
+        <Property Name="Done" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ActivityType" Type="Edm.String" Nullable="false" MaxLength="16" />
+        <Property Name="AddressNumber" Type="Edm.Int64" Nullable="false" />
+        <NavigationProperty Name="Address" Type="ch.abacus.worx.Address" Nullable="false" Partner="Activities">
+          <ReferentialConstraint Property="AddressNumber" ReferencedProperty="AddressNumber" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Address" HasStream="true">
+        <Key>
+          <PropertyRef Name="AddressNumber" />
+        </Key>
+        <Property Name="AddressNumber" Type="Edm.Int64" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" MaxLength="50">
+          <Annotation Term="Org.OData.Core.V1.Description">
+            <String>First name of the subject may be null for organisations</String>
+            <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+              <Bool>false</Bool>
+            </Annotation>
+          </Annotation>
+        </Property>
+        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="100" />
+        <Property Name="Type" Type="ch.abacus.worx.SubjectType" Nullable="false" />
+        <Property Name="struct" Type="ch.abacus.worx.struct" Nullable="false" />
+        <NavigationProperty Name="Activities" Type="Collection(ch.abacus.worx.Activity)" Partner="Address" />
+        <Annotation Term="Org.OData.Core.V1.Description">
+          <String>A subject which can either be an organisation or a natural person</String>
+          <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+            <Bool>false</Bool>
+          </Annotation>
+        </Annotation>
+      </EntityType>
+      <ComplexType Name="struct">
+        <Property Name="ComplexFirstname" Type="Edm.String" Nullable="false" MaxLength="20" />
+        <Property Name="ComplexLastname" Type="Edm.String" Nullable="false" MaxLength="20" />
+      </ComplexType>
+    </Schema>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ch.abacus.odata">
+      <EntityContainer Name="container">
+        <EntitySet Name="AddressesStub" EntityType="ch.abacus.worx.Address">
+          <NavigationPropertyBinding Path="Activities" Target="ActivitiesStub" />
+        </EntitySet>
+        <EntitySet Name="ActivitiesStub" EntityType="ch.abacus.worx.Activity">
+          <NavigationPropertyBinding Path="Address" Target="AddressesStub" />
+        </EntitySet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
