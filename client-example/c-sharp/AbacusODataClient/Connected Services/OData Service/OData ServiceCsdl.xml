@@ -4,6 +4,167 @@
     <edmx:IncludeAnnotations TermNamespace="Org.OData.Core.V1.IsLanguageDependent" />
   </edmx:Reference>
   <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ch.abacus.adre">
+      <EnumType Name="CommunicationType" IsFlags="false" UnderlyingType="Edm.Int32">
+        <Member Name="EMail" Value="1" />
+        <Member Name="SuisseId" Value="2" />
+        <Member Name="Phone" Value="3" />
+        <Member Name="Phone2" Value="4" />
+        <Member Name="Fax" Value="5" />
+        <Member Name="Mobile" Value="6" />
+        <Member Name="WWW" Value="7" />
+      </EnumType>
+      <EnumType Name="CommunicationCategory" IsFlags="false" UnderlyingType="Edm.Int32">
+        <Member Name="Standard" Value="0" />
+        <Member Name="Business" Value="1" />
+        <Member Name="Privat" Value="2" />
+        <Member Name="Others" Value="3" />
+      </EnumType>
+      <EnumType Name="SubjectState" IsFlags="false" UnderlyingType="Edm.Int32">
+        <Member Name="Active" Value="0" />
+        <Member Name="Inactive" Value="1" />
+      </EnumType>
+      <EnumType Name="SubjectType" IsFlags="false" UnderlyingType="Edm.Int32">
+        <Member Name="Person" Value="1" />
+        <Member Name="Organisation" Value="2" />
+      </EnumType>
+      <EntityType Name="Address">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="SubjectId" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ValidFrom" Type="Edm.Date" Nullable="false" />
+        <Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="ZIP" Type="Edm.String" Nullable="false" MaxLength="15" />
+        <Property Name="PostalCodeSupplement" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="4" />
+        <Property Name="State" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="HouseNumber" Type="Edm.String" Nullable="false" MaxLength="9" />
+        <Property Name="DwellingNumber" Type="Edm.String" Nullable="false" MaxLength="12" />
+        <Property Name="MunicipalityCode" Type="Edm.String" Nullable="false" MaxLength="16" />
+        <Property Name="BuildingNumber" Type="Edm.Int64" Nullable="false" />
+        <Property Name="AddressAddition" Type="Edm.String" Nullable="false" MaxLength="60" />
+        <Property Name="StreetAddition" Type="Edm.String" Nullable="false" MaxLength="60" />
+        <Property Name="PostOfficeBoxText" Type="Edm.String" Nullable="false" MaxLength="20" />
+        <Property Name="OpenLocationCode" Type="Edm.String" Nullable="false" MaxLength="15" />
+        <Property Name="Location" Type="ch.abacus.adre.Location" />
+        <NavigationProperty Name="Subject" Type="ch.abacus.adre.Subject" Nullable="false" Partner="Addresses">
+          <ReferentialConstraint Property="SubjectId" ReferencedProperty="Id" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Communication">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="SubjectId" Type="Edm.Int64" Nullable="false" />
+        <Property Name="LinkId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CommunicationType" Type="ch.abacus.adre.CommunicationType" Nullable="false" />
+        <Property Name="Data" Type="Edm.String" Nullable="false" MaxLength="65" />
+        <Property Name="Standard" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Ignore" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CommunicationCategory" Type="ch.abacus.adre.CommunicationCategory" Nullable="false" />
+        <NavigationProperty Name="Links" Type="ch.abacus.adre.Link" Nullable="false" Partner="Communications">
+          <ReferentialConstraint Property="LinkId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="Subject" Type="ch.abacus.adre.Subject" Nullable="false" Partner="Communications">
+          <ReferentialConstraint Property="SubjectId" ReferencedProperty="Id" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Link">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="SourceSubjectId" Type="Edm.Int64" Nullable="false" />
+        <Property Name="TargetSubjectId" Type="Edm.Int64" Nullable="false" />
+        <Property Name="LinkTypeId" Type="Edm.String" Nullable="false" MaxLength="16" />
+        <NavigationProperty Name="TargetSubject" Type="ch.abacus.adre.Subject" Nullable="false" Partner="TargetLinks">
+          <ReferentialConstraint Property="TargetSubjectId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="LinkType" Type="ch.abacus.adre.LinkType" Nullable="false" Partner="Links">
+          <ReferentialConstraint Property="LinkTypeId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="SourceSubject" Type="ch.abacus.adre.Subject" Nullable="false" Partner="SourceLinks">
+          <ReferentialConstraint Property="SourceSubjectId" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="Communications" Type="Collection(ch.abacus.adre.Communication)" Partner="Links" />
+        <NavigationProperty Name="LinkTypes" Type="Collection(ch.abacus.adre.LinkType)" Partner="Link" />
+        <Annotation Term="Org.OData.Core.V1.Description">
+          <String>Link between two Subjects</String>
+          <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+            <Bool>false</Bool>
+          </Annotation>
+        </Annotation>
+      </EntityType>
+      <EntityType Name="LinkType">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" />
+        <Property Name="Abacus" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="30" />
+        <NavigationProperty Name="Link" Type="ch.abacus.adre.Link" Nullable="false" Partner="LinkTypes">
+          <ReferentialConstraint Property="Id" ReferencedProperty="Id" />
+        </NavigationProperty>
+        <NavigationProperty Name="Links" Type="Collection(ch.abacus.adre.Link)" Partner="LinkType" />
+        <Annotation Term="Org.OData.Core.V1.Description">
+          <String>Linktype of a Link</String>
+          <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+            <Bool>false</Bool>
+          </Annotation>
+        </Annotation>
+      </EntityType>
+      <EntityType Name="Subject">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int64" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="50">
+          <Annotation Term="Org.OData.Core.V1.Description">
+            <String>First name of the subject may be null for organisations</String>
+            <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+              <Bool>false</Bool>
+            </Annotation>
+          </Annotation>
+        </Property>
+        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="100" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="Supplement" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="6" />
+        <Property Name="ModificationDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="ModifiedBy" Type="Edm.Guid" Nullable="false" />
+        <Property Name="EnteredBy" Type="Edm.Guid" Nullable="false" />
+        <Property Name="EntryDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="State" Type="ch.abacus.adre.SubjectState" Nullable="false" />
+        <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="80" />
+        <Property Name="Key" Type="Edm.Guid" Nullable="false" />
+        <Property Name="EnterpriseId" Type="Edm.String" Nullable="false" MaxLength="15" />
+        <Property Name="Type" Type="ch.abacus.adre.SubjectType" Nullable="false" />
+        <Property Name="TaxIdSwitzerland" Type="Edm.String" Nullable="false" MaxLength="20" />
+        <Property Name="TaxIdEuropeanUnion" Type="Edm.String" Nullable="false" MaxLength="15" />
+        <Property Name="NogaCode" Type="Edm.String" Nullable="false" MaxLength="10" />
+        <Property Name="Birthday" Type="Edm.Date" />
+        <Property Name="Source" Type="Edm.String" Nullable="false" MaxLength="100" />
+        <Property Name="BoxKey" Type="Edm.String" Nullable="false" MaxLength="42" />
+        <NavigationProperty Name="Addresses" Type="Collection(ch.abacus.adre.Address)" Partner="Subject" />
+        <NavigationProperty Name="Communications" Type="Collection(ch.abacus.adre.Communication)" Partner="Subject" />
+        <NavigationProperty Name="TargetLinks" Type="Collection(ch.abacus.adre.Link)" Partner="TargetSubject" />
+        <NavigationProperty Name="SourceLinks" Type="Collection(ch.abacus.adre.Link)" Partner="SourceSubject" />
+        <Annotation Term="Org.OData.Core.V1.Description">
+          <String>A subject which can either be an organisation or a natural person</String>
+          <Annotation Term="Org.OData.Core.V1.IsLanguageDependent">
+            <Bool>false</Bool>
+          </Annotation>
+        </Annotation>
+      </EntityType>
+      <ComplexType Name="Location">
+        <Property Name="Longitude" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="8" />
+        <Property Name="Latitude" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="8" />
+      </ComplexType>
+    </Schema>
     <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ch.abacus.worx">
       <EnumType Name="SubjectType" IsFlags="false" UnderlyingType="Edm.Int32">
         <Member Name="Person" Value="1" />
@@ -35,9 +196,9 @@
             </Annotation>
           </Annotation>
         </Property>
-        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="100" />
+        <Property Name="LastName" Type="Collection(Edm.String)" Nullable="false" MaxLength="100" />
         <Property Name="Type" Type="ch.abacus.worx.SubjectType" Nullable="false" />
-        <Property Name="struct" Type="ch.abacus.worx.struct" Nullable="false" />
+        <Property Name="Struct" Type="Collection(ch.abacus.worx.AnnotatedAddressStruct)" Nullable="false" />
         <NavigationProperty Name="Activities" Type="Collection(ch.abacus.worx.Activity)" Partner="Address" />
         <Annotation Term="Org.OData.Core.V1.Description">
           <String>A subject which can either be an organisation or a natural person</String>
@@ -46,18 +207,42 @@
           </Annotation>
         </Annotation>
       </EntityType>
-      <ComplexType Name="struct">
+      <ComplexType Name="AnnotatedAddressStruct">
         <Property Name="ComplexFirstname" Type="Edm.String" Nullable="false" MaxLength="20" />
         <Property Name="ComplexLastname" Type="Edm.String" Nullable="false" MaxLength="20" />
       </ComplexType>
     </Schema>
     <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ch.abacus.odata">
       <EntityContainer Name="container">
-        <EntitySet Name="AddressesStub" EntityType="ch.abacus.worx.Address">
-          <NavigationPropertyBinding Path="Activities" Target="ActivitiesStub" />
+        <EntitySet Name="Addresses" EntityType="ch.abacus.adre.Address">
+          <NavigationPropertyBinding Path="Subject" Target="Subjects" />
+        </EntitySet>
+        <EntitySet Name="Communications" EntityType="ch.abacus.adre.Communication">
+          <NavigationPropertyBinding Path="Links" Target="Links" />
+          <NavigationPropertyBinding Path="Subject" Target="Subjects" />
+        </EntitySet>
+        <EntitySet Name="LinkTypes" EntityType="ch.abacus.adre.LinkType">
+          <NavigationPropertyBinding Path="Link" Target="Links" />
+          <NavigationPropertyBinding Path="Links" Target="Links" />
+        </EntitySet>
+        <EntitySet Name="Links" EntityType="ch.abacus.adre.Link">
+          <NavigationPropertyBinding Path="TargetSubject" Target="Subjects" />
+          <NavigationPropertyBinding Path="LinkType" Target="LinkTypes" />
+          <NavigationPropertyBinding Path="SourceSubject" Target="Subjects" />
+          <NavigationPropertyBinding Path="Communications" Target="Communications" />
+          <NavigationPropertyBinding Path="LinkTypes" Target="LinkTypes" />
+        </EntitySet>
+        <EntitySet Name="Subjects" EntityType="ch.abacus.adre.Subject">
+          <NavigationPropertyBinding Path="Addresses" Target="Addresses" />
+          <NavigationPropertyBinding Path="Communications" Target="Communications" />
+          <NavigationPropertyBinding Path="TargetLinks" Target="Links" />
+          <NavigationPropertyBinding Path="SourceLinks" Target="Links" />
         </EntitySet>
         <EntitySet Name="ActivitiesStub" EntityType="ch.abacus.worx.Activity">
           <NavigationPropertyBinding Path="Address" Target="AddressesStub" />
+        </EntitySet>
+        <EntitySet Name="AddressesStub" EntityType="ch.abacus.worx.Address">
+          <NavigationPropertyBinding Path="Activities" Target="ActivitiesStub" />
         </EntitySet>
       </EntityContainer>
     </Schema>
