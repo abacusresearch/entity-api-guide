@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "AbacusODataClient": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "CLIENT_SECRET": "9da66e5f-06b0-e288-738f-bd3a8c76d1d3",
+        "CLIENT_ID": "20080b49-63a4-ec01-6259-fa163eafb1e9"
+      }
+    }
+  }
+}

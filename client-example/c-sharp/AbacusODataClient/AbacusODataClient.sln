@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32413.511
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbacusODataClient", "AbacusODataClient.csproj", "{EF61DAC7-666C-4E1C-80D4-EDED1A5F72FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataAuthenticator", "..\ODataAuthenticator\ODataAuthenticator.csproj", "{94F941E1-A715-42B3-917F-7C4ADA31E1C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF61DAC7-666C-4E1C-80D4-EDED1A5F72FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF61DAC7-666C-4E1C-80D4-EDED1A5F72FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF61DAC7-666C-4E1C-80D4-EDED1A5F72FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF61DAC7-666C-4E1C-80D4-EDED1A5F72FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F941E1-A715-42B3-917F-7C4ADA31E1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F941E1-A715-42B3-917F-7C4ADA31E1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F941E1-A715-42B3-917F-7C4ADA31E1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F941E1-A715-42B3-917F-7C4ADA31E1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E62BEE7C-5134-49A5-9914-10E57F1B4020}
+	EndGlobalSection
+EndGlobal
