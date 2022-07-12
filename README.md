@@ -34,31 +34,26 @@ Also we have attached the roadmap of Buisness Units which are planed to be trans
 
 ## Roadmap
 
-Abacus supports a wide array of systems. If for Customer Relationship Management, book keeping or project management we offer solutions. Because of this we need to support varying entities according to their respective buisness objects.
-
-At this point we wish to show a roadmap of the planned entities until release.
-
-![Entity API Roadmap](./resources/EntityApiPlan.PNG "Entity API Roadmap")
+Abacus supports a wide array of [product modules](https://www.abacus.ch/produkte). For most of these products, APIs for the individual business objects are being develped and incrementally released from the version 2023 on.
 
 ### Buisness Objects
 
-It is not planned to fully implement all Buisness Objects in defined by the Buisness Units in the roadmap to release 23'.
+Here is a table which shows which entities are planned to be developed.
 
-Here is a table which shows which entities will be implemented for the Buisness Unit.
-
-| Buisness Unit |Buisness Objects |
-|---------------|-----------------|
-|Allgemein | Kostenstelle, Mwst-Code, GB/Division, Enterprise, Dossier, Währung, Wechselkurs |
-|CRM| Adressen, Aktivitäten|
-|Finanzbuchhaltung| Buchungen, Journal, Accounts, Klassierungen (Konto & Kostenstelle)|
-| Kreditorenbuchhaltung | Beleg, Classification, Supplier|
-| Debitorenbuchhaltung | Beleg, Klassifikation, Kunden, Zahlung, Innosolv |
-|Servicemanagement|Serviceaufträge, Buchungen, In&Out|
-| Bau |LV Übernahme|
-|Auftragsbearbeitung|Produktstamm, Preisfindung, Verkauf, Einkauf|
-|Immobilienverwaltung|Mieter, Immobilienbaum, Objektverträge, Eigentümer|
-|Lohnbuchhaltung|Personalstamm, Vorerfassung, Lohnabrechnung|
-|HR|Bewerberstamm|
+| Product | Buisness Objects |
+|---------|------------------|
+| Allgemein | Geschäftsbereiche, Unternehmen, Währungen, Wechselkurse, MWST-Codes, Dossiers |
+| CRM | Adressen, Verbindungen, Kommunikationsdaten |
+| Finanzbuchhaltung | Buchungen, Konten, Kostenstellen |
+| Kreditoren | Belege, Lieferanten |
+| Debitoren | Belege, Kunden, Zahlungen |
+| Projektverwaltung | Buchungen, In & Out |
+| Servicemanagement | Serviceaufträge |
+| AbaBau | LV Übernahme |
+| Auftragsbearbeitung | Produktstamm, Preisfindung, Verkauf, Einkauf |
+| AbaImmo | Mieter, Eigentümer, Immobilien, Objektverträge |
+| Lohn | Personalstamm, Vorerfassung, Lohnabrechnung |
+| Human Resources | Bewerberstamm |
 
 
 **If you have questions or inputs to this roadmap we will of course respect our customers wishes! Feel free to contact us if you would like us to implement the entity for your use case earlier.**
