@@ -18,6 +18,8 @@
     - [Postman Collection](#postman-collection)
   - [Work in Progress](#work-in-progress)
   - [Limitations](#limitations)
+- [Tools](#tools)
+  - [Open API](#open-api)
 
 ## Intro
 This guide shall be used to help provide a client side implementation for usage of the new Abacus Entity API.
@@ -174,3 +176,16 @@ There are some operations which work very well with our underlying database stru
 These are:
 - count
 - skip (see [Pagination](#pagination))
+
+# Tools
+
+We would also like to give an overlook of supporting tools which can be used to interact and develop for the new Abacus API.
+
+## Open API
+
+It is possible to generate an Open API specification file from the services metadata XML file.
+
+To generate the specification use a converter. Here you have a variety of options. It is recommended to use the offical tool provided by the [OData Technical Committee](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=odata) on their [Github](https://github.com/oasis-tcs/odata-openapi)
+
+To get the required CSDL Schema send a GET Request to ```{{ServiceRoot}}/$metadata``` and save the result in a XML file.
+
