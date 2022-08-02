@@ -175,6 +175,10 @@ There are some operations which work very well with our underlying database stru
 These are:
 - count
 - skip (see [Pagination](#pagination))
+- orderby: we support ordering on columns which do have a physical index on the database to provide fast responses
+- filter: the same limitation applies to filters
+
+In case you combine orderby and filter queries, both columns need to match. For example while filtering the subjects on the last name (/Subjects?$filter=LastName eq 'Baumann') you may not order it by its Id.
 
 # Tools
 
