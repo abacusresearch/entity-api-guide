@@ -85,7 +85,6 @@ Further there are system operations defined for certain queryparameters if suppl
 | select | Used to query only certain properties of entity. If the primary key is not selected an odata.id is inserted to uniquely identify the items of the returned set. | $select=LastName,AddressNumber |
 | top | Used to select only the top number of elements returned by query. | $top=10 |
 | orderby | Used to order the returned query by a certain attribute in asc or desc order | $orderby=LastName desc |
-| search | Used to fulltext search for a property or nested property with the given string as value. <br>**currently WIP** | $search=Strasser |
 | expand | Used to expand a navigation property into the returning query | $expand=Addresses |
 | format | Used to change the format of the webservers response. supported formats are json, atom & xml | $format=json |
 
