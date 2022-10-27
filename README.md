@@ -3,7 +3,7 @@
 - [entity-api-guide](#entity-api-guide)
   - [Intro](#intro)
   - [Roadmap](#roadmap)
-    - [Buisness Objects](#buisness-objects)
+    - [Business Objects](#business-objects)
   - [OData Specification](#odata-specification)
     - [Supported Access Schemas](#supported-access-schemas)
     - [Supported Queryparameters](#supported-queryparameters)
@@ -26,26 +26,26 @@ This guide shall be used to help provide a client side implementation for usage 
 
 Entity API is a new Interface for processing and returning REST Request/Response Pairs as per OData 4.0 Specification.
 
-It is intended to be the new way to communicate with the Abacus Buisness Software.
+It is intended to be the new way to communicate with the Abacus Business Software.
 
 Essentially this quickstart provides the reader with information about how to wrap his webrequests to communicate with the API as intended.
 
 **For this quick start guide we will be using the Subjects Entity defined for the CRM subsystem of the Abacus application.**
 
-Also we have attached the roadmap of Buisness Units which are planed to be translated into entities until the official release of the Entity API in Feb. 23'.
+Also we have attached the roadmap of Business Units which are planed to be translated into entities until the official release of the Entity API in Feb. 23'.
 
 ## Roadmap
 
 Abacus supports a wide array of [product modules](https://www.abacus.ch/produkte). For most of these products, APIs for the individual business objects are being develped and incrementally released from the version 2023 on.
 
-### Buisness Objects
+### Business Objects
 
 Here is a table which shows which entities are planned to be developed.
 
-| Product | Buisness Objects |
+| Product | Business Objects |
 |---------|------------------|
 | Allgemein | Geschäftsbereiche, Unternehmen, Währungen, Wechselkurse, MWST-Codes, Dossiers |
-| CRM | Adressen, Verbindungen, Kommunikationsdaten |
+| CRM | Subjekte, Anschriften, Verbindungen, Kommunikationsdaten, Gruppierungen und -Einträge |
 | Finanzbuchhaltung | Buchungen, Konten, Kostenstellen |
 | Kreditoren | Belege, Lieferanten |
 | Debitoren | Belege, Kunden, Zahlungen |
