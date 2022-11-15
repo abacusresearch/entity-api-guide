@@ -40,26 +40,37 @@ Abacus supports a wide array of [product modules](https://www.abacus.ch/produkte
 
 ### Business Objects
 
-Here is a table which shows which entities are planned to be developed.
+Here is a table which shows which entities are currently available or under development.
 
-| Product | Business Objects |
-|---------|------------------|
-| Allgemein | Geschäftsbereiche, Unternehmen, Währungen, Wechselkurse, MWST-Codes, Dossiers |
-| CRM | Subjekte, Anschriften, Verbindungen, Kommunikationsdaten, Gruppierungen und -Einträge |
-| Finanzbuchhaltung | Buchungen, Konten, Kostenstellen |
-| Kreditoren | Belege, Lieferanten |
-| Debitoren | Belege, Kunden, Zahlungen |
-| Projektverwaltung | Buchungen, In & Out |
-| Servicemanagement | Serviceaufträge |
-| AbaBau | LV Übernahme |
-| Auftragsbearbeitung | Produktstamm, Preisfindung, Verkauf, Einkauf |
-| AbaImmo | Mieter, Eigentümer, Immobilien, Objektverträge |
-| Lohn | Personalstamm, Vorerfassung, Lohnabrechnung |
-| Human Resources | Bewerberstamm |
-
+| Product | Entity | Expected Availability |
+|---------|--------|--------|
+| Allgemein | Geschäftsbereiche | V2023 Release |
+| Allgemein | Unternehmen | V2023 Release |
+| Allgemein | Währungen  | V2023 Release |
+| Allgemein | Wechselkurse | V2023 Release |
+| Allgemein | MWST-Codes | V2024 |
+| Allgemein | Dossiers Dokumente | V2023 Release |
+| CRM | Subjekte | V2023 Release |
+| CRM | Anschriften  | V2023 Release |
+| CRM | Kommunikationsdaten | V2023 Release |
+| CRM | Verbindungen | V2023 Release |
+| CRM | Verbindungsarten | V2023 Release |
+| CRM | Gruppierungen und -Einträge | V2023 Release |
+| Finanzbuchhaltung | Buchungen | V2024 |
+| Finanzbuchhaltung | Konten | V2023 |
+| Finanzbuchhaltung | Kostenstellen | V2023 |
+| Debitoren | Belege | V2023 Release |
+| Debitoren | Kunden | V2023 |
+| Kreditoren | Belege | V2024 |
+| Kreditoren | Lieferanten | V2023 |
+| Projektverwaltung | Buchungen | V2023 Release |
+| Projektverwaltung | Projekte | V2023 |
+| Auftragsbearbeitung | Shop Produkte | V2023 Release |
+| Auftragsbearbeitung | Preisfindung | V2023 |
+| Lohn | Personalstamm | V2023 |
+| Lohn | Lohnabrechnung | V2023 |
 
 **If you have questions or inputs to this roadmap we will of course respect our customers wishes! Feel free to contact us if you would like us to implement the entity for your use case earlier.**
-
 
 ## OData Specification
 
