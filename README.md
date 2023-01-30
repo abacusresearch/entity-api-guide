@@ -1,6 +1,6 @@
 # Abacus API
 
-For further information as well as the onboarding processes, please visit [Abacus API Hub](https://apihub.abaservices.ch)
+For further information as well as the onboarding processes, please visit [Abacus API Hub](https://apihub.abacus.ch/)
 
 ## Sample clients
 
