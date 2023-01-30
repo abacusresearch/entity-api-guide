@@ -7,13 +7,11 @@ namespace AbacusODataClient
     {
         static void Main(string[] args)
         {
-            //var client = new SimpleAbaClient();
-            var client = new AbaClient();
-            var subjects = client.GetAddressesAsync().Result;
-            //Console.WriteLine($"{subject["LastName"]}");
-            foreach (var subject in subjects)
+            var client = new SimpleAbaClient();
+            var subjects = client.GetSubjectsAsync();
+            foreach (var subject in subjects.Result)
             {
-                Console.WriteLine($"{subject}");
+                Console.WriteLine($"{subject["Name"]}");
             }
         }
     }

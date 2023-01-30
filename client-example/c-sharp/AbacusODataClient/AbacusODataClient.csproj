@@ -6,14 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Connected Services\OData Service\OData ServiceCsdl.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Connected Services\OData Service\OData ServiceCsdl.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.OData.Client" Version="7.10.0" />
     <PackageReference Include="Microsoft.OData.Core" Version="7.10.0" />
     <PackageReference Include="Microsoft.OData.Edm" Version="7.10.0" />
@@ -29,6 +21,10 @@
 
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
   </ItemGroup>
 
 </Project>
