@@ -33,7 +33,6 @@ public class TestSampleODataClient {
             }
             for (EdmEntityType entityType : schema.getEntityTypes()) {
                 etFqns.add(entityType.getFullQualifiedName());
-                System.out.println(entityType + ": " + getDescription(edm, entityType));
             }
         }
        print("Found ComplexTypes", ctFqns);
@@ -71,7 +70,7 @@ public class TestSampleODataClient {
                 SERVICE_URL,
                 "Subjects",
                 "FirstName",
-                "LastName"
+                "Name"
         );
         while (iterator.hasNext()) {
             ClientEntity ce = iterator.next();
@@ -148,12 +147,12 @@ public class TestSampleODataClient {
     void testReadSubjectsWithKeyAndExpand() {
         print("\n----- Read Entity with $expand  ------------------------------");
         var entry = client.readEntityWithKeyExpand(
-                "http://localhost:8081/api/entity/v1/mandants/7777/",
-                "Activities",
-                UUID.fromString("dc021300-947f-e301-0204-e03720524153"),
-                "Address"
+                SERVICE_URL,
+                "Subjects",
+                1L,
+                "Addresses"
         );
-        print("Single Activities Entry with expanded Addresses relation:\n" + prettyPrint(entry.getProperties(), 0));
+        print("Single Subject with expanded Addresses relation:\n" + prettyPrint(entry.getProperties(), 0));
     }
 
     //region Print Helpers
