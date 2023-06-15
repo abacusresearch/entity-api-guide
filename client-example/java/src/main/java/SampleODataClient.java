@@ -62,9 +62,8 @@ public class SampleODataClient {
    * Following methods show the capabilities of an Apache Olingo Client. The used naming schema reflects the capabilities
    * of the method and the required parameters. There are implemented test under folder /test showing the usage of these
    * request helper methods.
-   *
    * The requests could also be implemented by providing:
-   * - Service URL + EntitySetName + Queryparams
+   * - Service URL + EntitySetName + Query params
    * - Auth
    * - Request Headers
    */
@@ -103,7 +102,7 @@ public class SampleODataClient {
     System.out.println("URI = " + absoluteUri);
     ODataEntitySetIteratorRequest<ClientEntitySet, ClientEntity> request =
             client.getRetrieveRequestFactory().getEntitySetIteratorRequest(absoluteUri);
-    request.setAccept("application/json");
+    request.setAccept("application/json;odata.metadata=none");
     ODataRetrieveResponse<ClientEntitySetIterator<ClientEntitySet, ClientEntity>> response = request.execute();
 
     return response.getBody();
@@ -126,7 +125,7 @@ public class SampleODataClient {
 
   private ClientEntity readEntity(URI absoluteUri) {
     ODataEntityRequest<ClientEntity> request = client.getRetrieveRequestFactory().getEntityRequest(absoluteUri);
-    request.setAccept("application/json;odata.metadata=full");
+    request.setAccept("application/json;odata.metadata=none");
     ODataRetrieveResponse<ClientEntity> response = request.execute();
 
     return response.getBody();
