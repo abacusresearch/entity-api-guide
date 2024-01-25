@@ -56,7 +56,7 @@ namespace AbacusODataClient
 
         private static long GetExpiresInAsLong(long expiresIn)
         {
-            return DateTime.Now.Ticks + expiresIn;
+            return DateTime.Now.Ticks + (expiresIn * 10000000L); // considering expiresIn is in seconds
         }
     }
 }
